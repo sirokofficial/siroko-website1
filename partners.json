@@ -1,0 +1,4 @@
+[
+  { "name": "Saga Coffee", "type": "Coffee shop", "perk": "10% off with your Siroko Card", "area": "Barcelona" },
+  { "name": "Trafalgar Pizza Club", "type": "Pizza", "perk": "Member discount, details coming soon", "area": "Barcelona" }
+]
