@@ -103,3 +103,12 @@ V86 update: changed chrome/silver typography back to clean white text while keep
 V87 update: forced all silver/chrome text effects back to clean white, including the homepage hero title and navigation.
 
 V88 update: fixed nav links disappearing on click/active/hover by forcing all navigation states to clean white.
+
+
+## How to update the site (Nov 2026)
+
+- **Add or edit an event:** open `events-data.js`, add an entry at the top, then copy `srk-004.html` to a new page (for example `srk-005.html`) and change its text. Cards on the home page and Events page, the countdown and the floating "Next Event" button update by themselves. Events turn into "past" automatically after their `end` time.
+- **Cookie banner:** `consent.js`. Google Analytics only runs after a visitor accepts.
+- **Privacy page:** `privacy.html`.
+- **SEO:** `sitemap.xml` and `robots.txt` are in the site root. Add new pages to the sitemap.
+- **Home video:** `assets/video/siroko-recap.mp4` (muted, loops). Replace the file to change it.

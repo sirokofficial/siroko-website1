@@ -7,6 +7,7 @@
 <meta content="Siroko is Barcelona’s international student circle for experiences, nightlife, sports and community drops." name="description"/>
 <meta content="#000000" name="theme-color"/>
 <title>Siroko Barcelona | Your 1st Circle in Barcelona</title>
+<link href="https://www.sirokofficial.com/" rel="canonical"/>
 <link href="assets/favicon.png" rel="icon" type="image/png"/>
 <link href="assets/favicon.ico" rel="shortcut icon"/>
 <link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/>
@@ -19,10 +20,13 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500});
+  try { if (localStorage.getItem('sirokoConsent') === 'granted') { gtag('consent', 'update', {analytics_storage: 'granted'}); } } catch (e) {}
   gtag('js', new Date());
 
   gtag('config', 'G-8KCZZCNY47');
 </script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Siroko", "url": "https://www.sirokofficial.com/", "logo": "https://www.sirokofficial.com/assets/siroko-icon-silver-crop.png", "description": "Siroko is the international student community in Barcelona for events, new friends and nights that feel connected.", "sameAs": ["https://www.instagram.com/sirokofficial/", "https://www.tiktok.com/@siroko.official"]}</script>
 </head>
 <body class="community-vibe">
 <div aria-hidden="true" class="site-loader" id="siteLoader">
@@ -65,7 +69,7 @@
 <a aria-label="TikTok" class="social-icon" href="https://www.tiktok.com/@siroko.official" rel="noreferrer" target="_blank"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M14 4v9.15a4.15 4.15 0 1 1-3.2-4.04v2.65a1.65 1.65 0 1 0 .95 1.49V4h2.25c.34 2.23 1.65 3.62 3.9 4.03v2.53A6.7 6.7 0 0 1 14 9.1Z"></path></svg></a>
 </div>
 </div>
-<div aria-label="Siroko community moments" class="hero-art"><div class="community-hero-stack"><div class="community-slideshow"><img alt="Siroko friends at sunset on the boat party" class="active" loading="eager" src="assets/srk-001-recap/srk-001-recap-15.jpg" style="--i:1;"/><img alt="Siroko group sunset boat party" loading="lazy" src="assets/srk-001-recap/srk-001-recap-01.jpg" style="--i:2;"/><img alt="Siroko sunset boat party friends" loading="lazy" src="assets/srk-001-recap/srk-001-recap-06.jpg" style="--i:3;"/><img alt="Students at the Siroko D9 social" loading="lazy" src="assets/srk-002-recap/srk-002-recap-16.jpg" style="--i:4;"/><img alt="Siroko club night recap" loading="lazy" src="assets/srk-002-recap/srk-002-recap-04.jpg" style="--i:5;"/></div><div class="community-hero-badge">Real students · real nights · real friends</div><div class="community-mini-grid"><img alt="Boat party friends" loading="lazy" src="assets/srk-001-recap/srk-001-recap-17.jpg"/><img alt="D9 group" loading="lazy" src="assets/srk-002-recap/srk-002-recap-16.jpg"/><img alt="Sunset boat moment" loading="lazy" src="assets/srk-001-recap/srk-001-recap-06.jpg"/></div></div></div>
+<div aria-label="Siroko community moments" class="hero-art"><div class="community-hero-stack"><div class="community-slideshow"><video aria-label="Siroko Halloween recap" autoplay="" class="community-video" loop="" muted="" playsinline="" poster="assets/video/siroko-recap-poster.jpg" preload="metadata"><source src="assets/video/siroko-recap.mp4" type="video/mp4"/></video></div><div class="community-hero-badge">Real students · real nights · real friends</div><div class="community-mini-grid"><img alt="Boat party friends" loading="lazy" src="assets/srk-001-recap/srk-001-recap-17.jpg"/><img alt="Siroko Halloween costumes" loading="lazy" src="assets/srk-003-recap/srk-003-recap-08.jpg"/><img alt="Siroko friends at the Halloween party" loading="lazy" src="assets/srk-003-recap/srk-003-recap-06.jpg"/></div></div></div>
 </section>
 <section aria-label="Siroko highlights" class="ticker">
 <div class="ticker-track">
@@ -81,31 +85,33 @@
 </div>
 <p class="section-note">Siroko is not just another event page. It is where international students meet before the night, during the night and after the recap drops.</p>
 </div>
-<div class="community-photo-ribbon"><img alt="Siroko boat party friends at sunset" loading="lazy" src="assets/srk-001-recap/srk-001-recap-15.jpg"/><img alt="Siroko boat party sunset" loading="lazy" src="assets/srk-001-recap/srk-001-recap-06.jpg"/><img alt="Siroko D9 group" loading="lazy" src="assets/srk-002-recap/srk-002-recap-16.jpg"/><img alt="Siroko Twenties club night" loading="lazy" src="assets/srk-002-recap/srk-002-recap-04.jpg"/></div>
+<div class="community-photo-ribbon"><img alt="Siroko boat party friends at sunset" loading="lazy" src="assets/srk-001-recap/srk-001-recap-15.jpg"/><img alt="Siroko friends at the Halloween party" loading="lazy" src="assets/srk-003-recap/srk-003-recap-07.jpg"/><img alt="Siroko Halloween group photo" loading="lazy" src="assets/srk-003-recap/srk-003-recap-10.jpg"/><img alt="Siroko Halloween friends" loading="lazy" src="assets/srk-003-recap/srk-003-recap-13.jpg"/></div>
 </section>
-<section aria-label="Siroko manifesto" class="section manifesto-section">
-<div class="manifesto-card">
-<p class="eyebrow"><span></span> Manifesto</p>
-<div class="manifesto-lines">
-<span>Arrive solo.</span>
-<span>Meet your people.</span>
-<span>Move through Barcelona.</span>
-<span>Come back for the next one.</span>
+<section aria-label="Siroko Card" class="section card-teaser-section reveal">
+<div class="card-teaser">
+<div class="card-teaser-copy">
+<p class="eyebrow"><span></span> Siroko Card</p>
+<h2 class="chrome-title small">Free in your wallet.</h2>
+<p>Add your Siroko Card to Apple Wallet for free and show it at partner restaurants and cafés in Barcelona to get discounts.</p>
+<ul class="check-list compact"><li>100% free, no payment needed</li><li>Discounts at partner restaurants &amp; cafés</li><li>Lives in your Apple Wallet</li></ul>
+<a class="btn btn-primary magnetic" href="membership.html">Get your free card <span>↗</span></a>
 </div>
+<div aria-hidden="true" class="teaser-card"><img alt="" src="assets/siroko-icon-silver-crop.png"/><div><strong>SIROKO CARD</strong><span>MEMBER · BCN</span></div></div>
 </div>
 </section>
 <section class="section events-section home-preview">
 <div class="section-head">
 <div>
 <p class="eyebrow"><span></span> Next drop</p>
-<h2 class="chrome-title small">SRK-003</h2>
+<h2 class="chrome-title small" data-next-code="">SRK-004</h2>
 </div>
 <a class="mini-btn preview-link" href="events.html">View all</a>
 </div>
 <div class="event-grid preview-grid">
-<article class="event-card tilt" data-category="nightlife"><div class="event-image srk003-flyer"></div><div class="event-content"><span class="date-chip">31 Oct</span><h3>SRK-003: Halloween Party</h3><p>Mambo Jambo · Fully private · Halloween night</p><span class="capacity-chip">3 DJs · Photographers · Halloween decor</span><div class="event-bottom event-bottom-split"><span>From €15</span><div class="event-card-actions"><a class="mini-btn" href="srk-003.html">More info +</a><a class="mini-btn mini-btn-primary buy-ticket-btn" href="https://site.fourvenues.com/en/siroko-null/events/halloween-party-siroko-31-10-2026-ZJC8" rel="noreferrer" target="_blank">Buy Tickets</a></div></div></div></article>
-<article class="event-card tilt event-card-past" data-category="nightlife"><div class="event-image srk001-community-card"></div><div class="event-content"><span class="date-chip muted">Past</span><h3>SRK-001: DEPARTURE</h3><p>Sunset Boat Party · Barcelona</p><span class="capacity-chip">Completed</span><div class="event-bottom event-bottom-split"><span>Boat Party</span><div class="event-card-actions"><a class="mini-btn" href="srk-001.html">View recap +</a></div></div></div></article>
+<article class="event-card event-card-featured tilt" data-category="nightlife"><div class="event-image srk004-flyer"></div><div class="event-content"><span class="date-chip">12 Nov</span><h3>SRK-004: Hip-Hop × House</h3><p>Boris · Thursday night · Barcelona</p><span class="capacity-chip">Jauset · HRTNGS · Tony</span><div class="event-bottom event-bottom-split"><span>Hip-hop × House</span><div class="event-card-actions"><a class="mini-btn" href="srk-004.html">More info +</a><a class="mini-btn mini-btn-primary buy-ticket-btn" href="https://chat.whatsapp.com/CiLnzHvrVsb4HOLV1KQPUT?s=cl&amp;p=i&amp;ilr=2" rel="noreferrer" target="_blank">Join WhatsApp</a></div></div></div></article>
+<article class="event-card tilt event-card-past" data-category="nightlife"><div class="event-image srk003-flyer"></div><div class="event-content"><span class="date-chip muted">31 Oct · Past</span><h3>SRK-003: Halloween Party</h3><p>Mambo Jambo · Fully private · Halloween night</p><span class="capacity-chip">Completed</span><div class="event-bottom event-bottom-split"><span>Halloween</span><div class="event-card-actions"><a class="mini-btn" href="srk-003.html">View recap +</a></div></div></div></article>
 <article class="event-card tilt event-card-past" data-category="social"><div class="event-image srk002-community-card"></div><div class="event-content"><span class="date-chip muted">Past</span><h3>SRK-002: Student Social</h3><p>D9 Aribau · Twenties Club Night</p><span class="capacity-chip">Completed</span><div class="event-bottom event-bottom-split"><span>D9 x Twenties</span><div class="event-card-actions"><a class="mini-btn" href="srk-002.html">View recap +</a></div></div></div></article>
+<article class="event-card tilt event-card-past" data-category="nightlife"><div class="event-image srk001-community-card"></div><div class="event-content"><span class="date-chip muted">26 Sep · Past</span><h3>SRK-001: DEPARTURE</h3><p>Sunset Boat Party · Barcelona</p><span class="capacity-chip">Completed</span><div class="event-bottom event-bottom-split"><span>Boat Party</span><div class="event-card-actions"><a class="mini-btn" href="srk-001.html">View recap +</a></div></div></div></article>
 </div>
 </section>
 </main>
@@ -115,6 +121,7 @@
 <a href="events.html">Events</a><a href="membership.html">Membership</a><a href="collabs.html">Collabs</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
 </nav>
 <p>© <span id="year"></span> Siroko Barcelona.</p>
+<p class="footer-legal"><a href="privacy.html">Privacy &amp; cookies</a></p>
 </footer>
 <dialog aria-labelledby="modalTitle" class="membership-modal" id="membershipModal">
 <form class="modal-inner" method="dialog">
@@ -129,7 +136,9 @@
 <p class="form-status" id="memberStatus"></p>
 </form>
 </dialog>
-<a class="mobile-ticket-cta" href="https://site.fourvenues.com/en/siroko-null/events/halloween-party-siroko-31-10-2026-ZJC8" rel="noreferrer" target="_blank">Get Halloween Tickets <span>↗</span></a>
+<a class="mobile-ticket-cta" href="srk-004.html">Next Event: 12 Nov <span>↗</span></a>
+<script src="events-data.js"></script>
 <script src="script.js"></script>
+<script src="consent.js"></script>
 </body>
 </html>

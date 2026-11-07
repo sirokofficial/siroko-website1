@@ -313,3 +313,12 @@ window.addEventListener('load', () => {
   setTimeout(() => loader.classList.add('is-hidden'), 520);
   setTimeout(() => loader.remove(), 1500);
 });
+
+// Hero video: respect "reduce motion" settings
+(function () {
+  const heroVideo = document.querySelector('.community-video');
+  if (heroVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
+})();

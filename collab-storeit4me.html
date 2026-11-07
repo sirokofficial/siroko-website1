@@ -7,6 +7,7 @@
 <meta content="StoreIt4Me is an official Siroko collab: a student-focused storage, moving and shipping platform based in Barcelona." name="description"/>
 <meta content="#000000" name="theme-color"/>
 <title>StoreIt4Me x Siroko | Official Collab</title>
+<link href="https://www.sirokofficial.com/collab-storeit4me.html" rel="canonical"/>
 <link href="assets/favicon.png" rel="icon" type="image/png"/>
 <link href="assets/favicon.ico" rel="shortcut icon"/>
 <link href="assets/apple-touch-icon.png" rel="apple-touch-icon"/>
@@ -19,6 +20,8 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {analytics_storage: 'denied', ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500});
+  try { if (localStorage.getItem('sirokoConsent') === 'granted') { gtag('consent', 'update', {analytics_storage: 'granted'}); } } catch (e) {}
   gtag('js', new Date());
 
   gtag('config', 'G-8KCZZCNY47');
@@ -85,6 +88,7 @@
 <a href="events.html">Events</a><a href="membership.html">Membership</a><a href="collabs.html">Collabs</a><a href="gallery.html">Gallery</a><a href="about.html">About</a><a href="contact.html">Contact</a>
 </nav>
 <p>© <span id="year"></span> Siroko Barcelona.</p>
+<p class="footer-legal"><a href="privacy.html">Privacy &amp; cookies</a></p>
 </footer>
 <dialog aria-labelledby="modalTitle" class="membership-modal" id="membershipModal">
 <form class="modal-inner" method="dialog">
@@ -99,7 +103,9 @@
 <p class="form-status" id="memberStatus"></p>
 </form>
 </dialog>
-<a class="mobile-ticket-cta" href="https://site.fourvenues.com/en/siroko-null/events/halloween-party-siroko-31-10-2026-ZJC8" rel="noreferrer" target="_blank">Get Halloween Tickets <span>↗</span></a>
+<a class="mobile-ticket-cta" href="srk-004.html">Next Event: 12 Nov <span>↗</span></a>
+<script src="events-data.js"></script>
 <script src="script.js"></script>
+<script src="consent.js"></script>
 </body>
 </html>

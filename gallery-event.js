@@ -46,6 +46,15 @@ const srk002Photos = Array.from({ length: 20 }, (_, index) => {
   };
 });
 
+const srk003Photos = Array.from({ length: 24 }, (_, index) => {
+  const number = String(index + 1).padStart(2, "0");
+  return {
+    src: `assets/srk-003-recap/srk-003-recap-${number}.jpg`,
+    label: `SRK-003 · ${number}`,
+    download: `srk-003-recap-${number}.jpg`
+  };
+});
+
 const events = {
   "founder-archives": {
     title: "End of Semester Party — Bacheloneta",
@@ -72,8 +81,8 @@ const events = {
   "srk-003": {
     title: "SRK-003: Halloween Party",
     subtitle: "Mambo Jambo",
-    description: "Halloween archive coming after the event.",
-    count: 12
+    description: "A fully private Halloween night at Mambo Jambo: costumes, three DJs and a packed international crowd.",
+    photos: srk003Photos
   },
   "night-drops": {
     title: "SRK-001: DEPARTURE",
@@ -87,7 +96,12 @@ const events = {
     description: "A packed student social at D9 that moved into Twenties for the after-club part of the night.",
     photos: srk002Photos
   },
-  "student-nights": { title: "SRK-003: Halloween Party", count: 12 },
+  "student-nights": {
+    title: "SRK-003: Halloween Party",
+    subtitle: "Mambo Jambo",
+    description: "A fully private Halloween night at Mambo Jambo: costumes, three DJs and a packed international crowd.",
+    photos: srk003Photos
+  },
   "after-dark": { title: "SRK-004", count: 8 },
   "community": { title: "Community", count: 9 }
 };
