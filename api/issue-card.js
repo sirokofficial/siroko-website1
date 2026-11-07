@@ -1,6 +1,6 @@
 // Serverless function (Vercel): POST { name, email } -> { memberNumber, walletUrl }.
 // Provider and member store live in api/_provider.js. A repeat email gets its existing card back.
-const { findMember, nextMemberNumber, createWalletPass } = require('./_provider');
+const { findMember, nextMemberNumber, releaseMemberNumber, createWalletPass } = require('./_provider');
 
 module.exports = async (req, res) => {
   // Allow the site on other hosts (cPanel) to call this function from the browser.
@@ -21,13 +21,19 @@ module.exports = async (req, res) => {
     if (existing) return res.status(200).json({ memberNumber: existing.memberNumber, walletUrl: existing.walletUrl });
 
     const memberNumber = await nextMemberNumber();
-    const walletUrl = await createWalletPass({ name: name.trim().slice(0, 60), email, memberNumber });
+    let walletUrl;
+    try {
+      walletUrl = await createWalletPass({ name: name.trim().slice(0, 60), email, memberNumber });
+    } catch (error) {
+      await releaseMemberNumber();
+      throw error;
+    }
     return res.status(200).json({ memberNumber, walletUrl });
   } catch (error) {
     if (error.code === 'NOT_CONFIGURED') {
       return res.status(501).json({ message: 'Siroko Card is launching soon. Check back shortly.' });
     }
     console.error(error);
-    return res.status(500).json({ message: 'Something went wrong. Try again in a moment.' });
+    return res.status(500).json({ message: 'Something went wrong. Try again in a moment.', code: error.code || 'UNKNOWN' });
   }
 };

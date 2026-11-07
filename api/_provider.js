@@ -12,7 +12,7 @@ const redis = async (...command) => {
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify(command)
   });
-  if (!response.ok) throw new Error(`Redis error ${response.status}`);
+  if (!response.ok) throw Object.assign(new Error(`Redis error ${response.status}`), { code: `STORE_${response.status}` });
   return (await response.json()).result;
 };
 
@@ -26,6 +26,11 @@ async function findMember(email) {
 async function nextMemberNumber() {
   const count = await redis('INCR', 'member_counter');
   return `BCN ${String(count).padStart(5, '0')}`;
+}
+
+// Give the number back if the card could not be created, so numbers are not skipped.
+async function releaseMemberNumber() {
+  try { await redis('DECR', 'member_counter'); } catch (e) { /* best effort */ }
 }
 
 // Create the pass and return its hosted "Add to Apple Wallet" page URL.
@@ -42,7 +47,7 @@ async function createWalletPass({ name, email, memberNumber }) {
     barcodeAltText: memberNumber,
     colorPreset: 'dark',
     expirationDays: 365,
-    logoURL: process.env.PASS_LOGO_URL || 'https://sirokofficial.com/assets/siroko-icon-silver-crop.png',
+    logoURL: process.env.PASS_LOGO_URL || 'https://www.sirokofficial.com/assets/pass-logo.png',
     headerFields: [{ label: 'CARD', value: 'SRK' }],
     primaryFields: [{ label: 'SIROKO', value: 'STUDENT Card' }],
     secondaryFields: [
@@ -53,16 +58,27 @@ async function createWalletPass({ name, email, memberNumber }) {
   };
   if (process.env.PASS_COLOR) body.color = process.env.PASS_COLOR;
 
-  const response = await fetch('https://api.walletwallet.dev/api/passes', {
+  const send = (payload) => fetch('https://api.walletwallet.dev/api/passes', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${key}` },
-    body: JSON.stringify(body)
+    body: JSON.stringify(payload)
   });
-  if (!response.ok) throw new Error(`WalletWallet error ${response.status}: ${await response.text()}`);
+
+  let response = await send(body);
+  if (!response.ok) {
+    // Retry once without the plan-restricted extras (custom logo/color) so the card still gets created.
+    console.error(`WalletWallet error ${response.status} (full design): ${await response.text()}`);
+    const { logoURL, color, ...basic } = body;
+    response = await send(basic);
+  }
+  if (!response.ok) {
+    const text = await response.text();
+    throw Object.assign(new Error(`WalletWallet error ${response.status}: ${text}`), { code: `WALLET_${response.status}` });
+  }
   const { shareUrl } = await response.json();
 
   await redis('SET', `member:${email.toLowerCase()}`, JSON.stringify({ name, email, memberNumber, walletUrl: shareUrl }));
   return shareUrl;
 }
 
-module.exports = { findMember, nextMemberNumber, createWalletPass };
+module.exports = { findMember, nextMemberNumber, releaseMemberNumber, createWalletPass };
