@@ -3344,3 +3344,7 @@ html body .event-grid .event-card-featured .event-bottom{margin-top:28px!importa
 .past-events{padding-top:0;}
 .past-events .section-head{margin-bottom:24px;}
 .events-empty{grid-column:1/-1;color:rgba(255,255,255,.7);font-size:16px;}
+
+/* Events page: one countdown above each upcoming event */
+.event-grid .event-countdown-row{grid-column:1/-1;margin:0;max-width:760px;}
+.event-grid .event-countdown-row + .event-card{margin-top:-8px;}

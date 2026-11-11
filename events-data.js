@@ -129,6 +129,14 @@ window.SIROKO_EVENTS = [
       `<a class="mini-btn" href="${esc(e.page)}">${e.isPast ? (e.gallery ? "View recap +" : "View event +") : "More info +"}</a>${ticket}</div></div></div></article>`;
   }
 
+  // One countdown above each upcoming event (events page)
+  function countdownCard(e) {
+    return `<div aria-label="Countdown to ${esc(e.code)}" class="countdown-card events-countdown event-countdown-row" data-countdown="${esc(e.start)}">` +
+      `<span class="countdown-label">${esc(e.code)} ${esc(e.tag)} in</span><div class="countdown-grid">` +
+      `<div><strong data-days="">00</strong><span>Days</span></div><div><strong data-hours="">00</strong><span>Hours</span></div>` +
+      `<div><strong data-minutes="">00</strong><span>Minutes</span></div><div><strong data-seconds="">00</strong><span>Seconds</span></div></div></div>`;
+  }
+
   // Events page: everything, upcoming first
   const grid = document.getElementById("eventGrid");
   const pastGrid = document.getElementById("pastEventGrid");
@@ -136,7 +144,7 @@ window.SIROKO_EVENTS = [
     if (pastGrid) {
       // Events page: upcoming on top, in date order, past events in their own section below
       grid.innerHTML = upcoming.length
-        ? upcoming.slice().sort((a, b) => Date.parse(a.start) - Date.parse(b.start)).map((e) => card(e, true)).join("")
+        ? upcoming.slice().sort((a, b) => Date.parse(a.start) - Date.parse(b.start)).map((e) => countdownCard(e) + card(e, true)).join("")
         : '<p class="events-empty">New events are coming soon. Join the community chat to hear first.</p>';
       pastGrid.innerHTML = past.map((e) => card(e, false)).join("");
       const pastSection = document.getElementById("past-events");
@@ -157,7 +165,8 @@ window.SIROKO_EVENTS = [
   }
 
   // Countdown card on the events page
-  const cd = document.querySelector(".events-countdown");
+  const cd = document.getElementById("pastEventGrid") ? null : document.querySelector(".events-countdown");
+  if (!cd) { const old = document.querySelector("section > .events-countdown"); if (old) old.remove(); }
   if (cd) {
     if (next) {
       cd.dataset.countdown = next.start;
