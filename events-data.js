@@ -22,7 +22,7 @@ window.SIROKO_EVENTS = [
     end: "2026-11-21T06:00:00+01:00",
     dateLabel: "20 Nov",
     place: "Sala Bikini · Friday night · Barcelona",
-    chip: "Siroko × Zaylune · Dress code: white",
+    chip: "Siroko × Zaylune · Tickets from €8",
     tag: "The White Affair",
     category: "nightlife",
     imageClass: "srk005-flyer",
