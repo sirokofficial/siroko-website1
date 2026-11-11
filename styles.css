@@ -3327,3 +3327,15 @@ html body .event-grid .event-card-featured .event-bottom{margin-top:28px!importa
   background-size:cover!important;
   background-position:center!important;
 }
+
+/* Home hero: video, then photos; the three tiles are clickable */
+.community-slideshow .community-video{opacity:0;transition:opacity .7s ease;}
+.community-slideshow .community-video.is-on{opacity:1;}
+.community-slideshow .hero-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;opacity:0;transform:none;animation:none;transition:opacity .7s ease;}
+.community-slideshow .hero-still.is-on{opacity:1;}
+.community-mini-grid .hero-thumb{position:relative;padding:0;border:0;background:none;cursor:pointer;border-radius:22px;transition:transform .2s ease;}
+.community-mini-grid .hero-thumb:hover{transform:translateY(-4px);}
+.community-mini-grid .hero-thumb:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+.community-mini-grid .hero-thumb img{display:block;}
+.community-mini-grid .hero-thumb.is-video:after{content:"▶";position:absolute;inset:4px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:rgba(0,0,0,.35);color:#fff;font-size:20px;pointer-events:none;}
+@media (max-width:760px){.community-mini-grid .hero-thumb{border-radius:18px;}}

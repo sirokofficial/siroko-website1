@@ -28,7 +28,7 @@ window.SIROKO_EVENTS = [
     category: "nightlife",
     imageClass: "srk005-flyer",
     featured: true,
-    ctaLabel: "THE WHITE PARTY",
+    ctaLabel: "NEXT EVENT: THE WHITE PARTY",
     ticketUrl: "https://www.fourvenues.com/adam-bacsa1/events/the-white-affair-by-zaylune-x-toca-rouge-x-siroko-x-esade-events-20-11-2026-FCZY"
   },
   {

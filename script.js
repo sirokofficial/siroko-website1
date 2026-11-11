@@ -322,3 +322,84 @@ window.addEventListener('load', () => {
     heroVideo.pause();
   }
 })();
+
+// Home hero: the video plays for 10 seconds, then the hero steps through photos.
+// The three small tiles under it are the next items; click one to bring it to the big spot.
+(function () {
+  const stage = document.querySelector('.community-slideshow');
+  const video = stage && stage.querySelector('.community-video');
+  const thumbs = document.querySelector('.community-mini-grid');
+  if (!stage || !video || !thumbs) return;
+
+  const VIDEO_MS = 10000;   // how long the video plays before photos start
+  const PHOTO_MS = 4500;    // how long each photo stays
+  const photos = [
+    ['assets/srk-003-recap/srk-003-recap-05.jpg', 'Siroko Halloween party crowd'],
+    ['assets/srk-001-recap/srk-001-recap-15.jpg', 'Siroko boat party at sunset'],
+    ['assets/srk-003-recap/srk-003-recap-07.jpg', 'Friends at the Halloween party'],
+    ['assets/srk-002-recap/srk-002-recap-16.jpg', 'Siroko student social'],
+    ['assets/srk-003-recap/srk-003-recap-10.jpg', 'Siroko Halloween group photo'],
+    ['assets/srk-001-recap/srk-001-recap-17.jpg', 'Boat party friends'],
+    ['assets/srk-003-recap/srk-003-recap-13.jpg', 'Siroko Halloween friends'],
+    ['assets/srk-003-recap/srk-003-recap-08.jpg', 'Siroko Halloween costumes']
+  ];
+  const poster = video.getAttribute('poster') || photos[0][0];
+  const items = [{ type: 'video', src: poster, alt: 'Play the Siroko recap video' }]
+    .concat(photos.map(([src, alt]) => ({ type: 'photo', src, alt })));
+
+  const still = document.createElement('img');
+  still.className = 'hero-still';
+  still.alt = '';
+  stage.insertBefore(still, video.nextSibling);
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  let timer = null;
+
+  function show(index) {
+    current = (index + items.length) % items.length;
+    const item = items[current];
+    clearTimeout(timer);
+
+    if (item.type === 'video') {
+      still.classList.remove('is-on');
+      video.classList.add('is-on');
+      try { video.currentTime = 0; } catch (e) {}
+      const playing = video.play();
+      if (playing && playing.catch) playing.catch(() => {});
+    } else {
+      video.classList.remove('is-on');
+      video.pause();
+      still.src = item.src;
+      still.alt = item.alt;
+      still.classList.add('is-on');
+    }
+    drawThumbs();
+    if (!reduceMotion) timer = setTimeout(() => show(current + 1), item.type === 'video' ? VIDEO_MS : PHOTO_MS);
+  }
+
+  function drawThumbs() {
+    thumbs.innerHTML = '';
+    for (let step = 1; step <= 3; step++) {
+      const index = (current + step) % items.length;
+      const item = items[index];
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'hero-thumb' + (item.type === 'video' ? ' is-video' : '');
+      button.setAttribute('aria-label', item.type === 'video' ? 'Play the recap video' : 'Show photo: ' + item.alt);
+      const image = document.createElement('img');
+      image.src = item.src;
+      image.alt = '';
+      image.loading = 'lazy';
+      button.append(image);
+      button.addEventListener('click', () => show(index));
+      thumbs.append(button);
+    }
+  }
+
+  video.removeAttribute('loop');
+  video.classList.add('is-on');
+  drawThumbs();
+  if (reduceMotion) { video.pause(); return; }
+  timer = setTimeout(() => show(1), VIDEO_MS);
+})();
