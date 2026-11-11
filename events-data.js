@@ -41,7 +41,6 @@ window.SIROKO_EVENTS = [
     tag: "Hip-hop × House",
     category: "nightlife",
     imageClass: "srk004-flyer",
-    hideWhenPast: true,
     ticketUrl: "https://www.fourvenues.com/siroko-null/events/1211-jauset-x-siroko-12-11-2026-V836"
   },
   {
@@ -125,7 +124,7 @@ window.SIROKO_EVENTS = [
       `<div class="event-content"><span class="date-chip${e.isPast ? " muted" : ""}">${esc(e.dateLabel)}${e.isPast ? " · Past" : ""}</span>` +
       `<h3>${esc(e.title)}</h3><p>${esc(e.place)}</p><span class="capacity-chip">${esc(e.chip)}</span>` +
       `<div class="event-bottom event-bottom-split"><span>${esc(e.tag)}</span><div class="event-card-actions">` +
-      `<a class="mini-btn" href="${esc(e.page)}">${e.isPast ? "View recap +" : "More info +"}</a>${ticket}</div></div></div></article>`;
+      `<a class="mini-btn" href="${esc(e.page)}">${e.isPast ? (e.gallery ? "View recap +" : "View event +") : "More info +"}</a>${ticket}</div></div></div></article>`;
   }
 
   // Events page: everything, upcoming first
