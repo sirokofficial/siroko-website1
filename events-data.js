@@ -8,6 +8,7 @@
    4) once it has a photo gallery, add `gallery`, `galleryTitle`, `gallerySub`, `photoCount`, `cover`
       (and a matching entry in gallery-event.js) and it shows up on the Gallery page
 
+   `ctaLabel` sets the text on the floating bottom-right button (default "Next Event: <date>").
    `featured: true` makes an upcoming event the "next event" even if another one is sooner.
    `hideWhenPast: true` removes a small event from the site once it is over (no recap page).
    Events switch from "upcoming" to "past" on their own once `end` has passed.
@@ -27,6 +28,7 @@ window.SIROKO_EVENTS = [
     category: "nightlife",
     imageClass: "srk005-flyer",
     featured: true,
+    ctaLabel: "THE WHITE PARTY",
     ticketUrl: "https://www.fourvenues.com/adam-bacsa1/events/the-white-affair-by-zaylune-x-toca-rouge-x-siroko-x-esade-events-20-11-2026-FCZY"
   },
   {
@@ -161,7 +163,7 @@ window.SIROKO_EVENTS = [
   if (cta) {
     if (next) {
       cta.setAttribute("href", next.page);
-      cta.innerHTML = "Next Event: " + esc(next.dateLabel) + " <span>↗</span>";
+      cta.innerHTML = (next.ctaLabel ? esc(next.ctaLabel) : "Next Event: " + esc(next.dateLabel)) + " <span>↗</span>";
     } else {
       cta.setAttribute("href", "events.html");
       cta.innerHTML = "View Events <span>↗</span>";
