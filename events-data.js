@@ -3,15 +3,31 @@
 
    To add a new event:
    1) add an entry at the TOP of the list below
-   2) copy srk-004.html to srk-005.html and edit the text
+   2) copy srk-005.html to a new page (srk-006.html) and edit the text
    3) put its photos/flyer in /assets and point `imageClass` or `image` at them
    4) once it has a photo gallery, add `gallery`, `galleryTitle`, `gallerySub`, `photoCount`, `cover`
       (and a matching entry in gallery-event.js) and it shows up on the Gallery page
 
+   `featured: true` makes an upcoming event the "next event" even if another one is sooner.
    Events switch from "upcoming" to "past" on their own once `end` has passed.
    Cards, the countdown and the floating "Next Event" button all read from here.
 ---------------------------------------------------------------- */
 window.SIROKO_EVENTS = [
+  {
+    code: "SRK-005",
+    title: "SRK-005: The White Affair",
+    page: "srk-005.html",
+    start: "2026-11-21T00:00:00+01:00",
+    end: "2026-11-21T06:00:00+01:00",
+    dateLabel: "20 Nov",
+    place: "Sala Bikini · Friday night · Barcelona",
+    chip: "Siroko × Zaylune · Dress code: white",
+    tag: "The White Affair",
+    category: "nightlife",
+    imageClass: "srk005-flyer",
+    featured: true,
+    ticketUrl: "https://www.fourvenues.com/adam-bacsa1/events/the-white-affair-by-zaylune-x-toca-rouge-x-siroko-x-esade-events-20-11-2026-FCZY"
+  },
   {
     code: "SRK-004",
     title: "SRK-004: Hip-Hop × House",
@@ -89,7 +105,7 @@ window.SIROKO_EVENTS = [
 (function () {
   const now = Date.now();
   const all = (window.SIROKO_EVENTS || []).map((e) => ({ ...e, isPast: Date.parse(e.end || e.start) < now }));
-  const upcoming = all.filter((e) => !e.isPast).sort((a, b) => Date.parse(a.start) - Date.parse(b.start));
+  const upcoming = all.filter((e) => !e.isPast).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || Date.parse(a.start) - Date.parse(b.start));
   const past = all.filter((e) => e.isPast).sort((a, b) => Date.parse(b.start) - Date.parse(a.start));
   const next = upcoming[0] || null;
   window.SirokoNextEvent = next;
