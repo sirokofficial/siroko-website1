@@ -331,7 +331,8 @@ window.addEventListener('load', () => {
   const thumbs = document.querySelector('.community-mini-grid');
   if (!stage || !video || !thumbs) return;
 
-  const VIDEO_MS = 10000;   // how long the video plays before photos start
+  const VIDEO_START = 5;    // video starts at second 5
+  const VIDEO_MS = 10000;   // and plays 10 seconds (to second 15) before photos start
   const PHOTO_MS = 4500;    // how long each photo stays
   const photos = [
     ['assets/srk-003-recap/srk-003-recap-05.jpg', 'Siroko Halloween party crowd'],
@@ -364,7 +365,7 @@ window.addEventListener('load', () => {
     if (item.type === 'video') {
       still.classList.remove('is-on');
       video.classList.add('is-on');
-      try { video.currentTime = 0; } catch (e) {}
+      try { video.currentTime = VIDEO_START; } catch (e) {}
       const playing = video.play();
       if (playing && playing.catch) playing.catch(() => {});
     } else {
@@ -398,6 +399,8 @@ window.addEventListener('load', () => {
   }
 
   video.removeAttribute('loop');
+  const seekStart = () => { try { if (video.currentTime < VIDEO_START) video.currentTime = VIDEO_START; } catch (e) {} };
+  if (video.readyState >= 1) seekStart(); else video.addEventListener('loadedmetadata', seekStart, { once: true });
   video.classList.add('is-on');
   drawThumbs();
   if (reduceMotion) { video.pause(); return; }
