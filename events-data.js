@@ -9,6 +9,7 @@
       (and a matching entry in gallery-event.js) and it shows up on the Gallery page
 
    `featured: true` makes an upcoming event the "next event" even if another one is sooner.
+   `hideWhenPast: true` removes a small event from the site once it is over (no recap page).
    Events switch from "upcoming" to "past" on their own once `end` has passed.
    Cards, the countdown and the floating "Next Event" button all read from here.
 ---------------------------------------------------------------- */
@@ -40,6 +41,7 @@ window.SIROKO_EVENTS = [
     tag: "Hip-hop × House",
     category: "nightlife",
     imageClass: "srk004-flyer",
+    hideWhenPast: true,
     ticketUrl: "https://www.fourvenues.com/siroko-null/events/1211-jauset-x-siroko-12-11-2026-V836"
   },
   {
@@ -104,7 +106,7 @@ window.SIROKO_EVENTS = [
 /* ---- renderer: you should not need to edit anything below ---- */
 (function () {
   const now = Date.now();
-  const all = (window.SIROKO_EVENTS || []).map((e) => ({ ...e, isPast: Date.parse(e.end || e.start) < now }));
+  const all = (window.SIROKO_EVENTS || []).map((e) => ({ ...e, isPast: Date.parse(e.end || e.start) < now })).filter((e) => !(e.isPast && e.hideWhenPast));
   const upcoming = all.filter((e) => !e.isPast).sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || Date.parse(a.start) - Date.parse(b.start));
   const past = all.filter((e) => e.isPast).sort((a, b) => Date.parse(b.start) - Date.parse(a.start));
   const next = upcoming[0] || null;
