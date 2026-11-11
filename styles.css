@@ -3339,3 +3339,8 @@ html body .event-grid .event-card-featured .event-bottom{margin-top:28px!importa
 .community-mini-grid .hero-thumb img{display:block;}
 .community-mini-grid .hero-thumb.is-video:after{content:"▶";position:absolute;inset:4px;display:flex;align-items:center;justify-content:center;border-radius:18px;background:rgba(0,0,0,.35);color:#fff;font-size:20px;pointer-events:none;}
 @media (max-width:760px){.community-mini-grid .hero-thumb{border-radius:18px;}}
+
+/* Events page: separate past events section */
+.past-events{padding-top:0;}
+.past-events .section-head{margin-bottom:24px;}
+.events-empty{grid-column:1/-1;color:rgba(255,255,255,.7);font-size:16px;}

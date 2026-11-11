@@ -131,8 +131,19 @@ window.SIROKO_EVENTS = [
 
   // Events page: everything, upcoming first
   const grid = document.getElementById("eventGrid");
+  const pastGrid = document.getElementById("pastEventGrid");
   if (grid && all.length) {
-    grid.innerHTML = upcoming.map((e, i) => card(e, i === 0)).join("") + past.map((e) => card(e, false)).join("");
+    if (pastGrid) {
+      // Events page: upcoming on top, past events in their own section below
+      grid.innerHTML = upcoming.length
+        ? upcoming.map((e, i) => card(e, i === 0)).join("")
+        : '<p class="events-empty">New events are coming soon. Join the community chat to hear first.</p>';
+      pastGrid.innerHTML = past.map((e) => card(e, false)).join("");
+      const pastSection = document.getElementById("past-events");
+      if (pastSection && !past.length) pastSection.style.display = "none";
+    } else {
+      grid.innerHTML = upcoming.map((e, i) => card(e, i === 0)).join("") + past.map((e) => card(e, false)).join("");
+    }
   }
 
   // Home page preview: next event featured, then the latest three past ones
