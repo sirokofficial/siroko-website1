@@ -134,9 +134,9 @@ window.SIROKO_EVENTS = [
   const pastGrid = document.getElementById("pastEventGrid");
   if (grid && all.length) {
     if (pastGrid) {
-      // Events page: upcoming on top, past events in their own section below
+      // Events page: upcoming on top, in date order, past events in their own section below
       grid.innerHTML = upcoming.length
-        ? upcoming.map((e) => card(e, true)).join("")
+        ? upcoming.slice().sort((a, b) => Date.parse(a.start) - Date.parse(b.start)).map((e) => card(e, true)).join("")
         : '<p class="events-empty">New events are coming soon. Join the community chat to hear first.</p>';
       pastGrid.innerHTML = past.map((e) => card(e, false)).join("");
       const pastSection = document.getElementById("past-events");
