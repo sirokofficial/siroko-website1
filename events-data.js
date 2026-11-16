@@ -9,6 +9,7 @@
       (and a matching entry in gallery-event.js) and it shows up on the Gallery page
 
    `ctaLabel` sets the text on the floating bottom-right button (default "Next Event: <date>").
+   `venue`, `area`, `lat`, `lng` put the event on the home page map and timeline (`thumb` is its small picture).
    `featured: true` makes an upcoming event the "next event" even if another one is sooner.
    `hideWhenPast: true` removes a small event from the site once it is over (no recap page).
    Events switch from "upcoming" to "past" on their own once `end` has passed.
@@ -27,6 +28,11 @@ window.SIROKO_EVENTS = [
     tag: "The White Affair",
     category: "nightlife",
     imageClass: "srk005-flyer",
+    venue: "Sala Bikini",
+    area: "Les Corts",
+    lat: 41.38946,
+    lng: 2.13703,
+    thumb: "assets/srk-005-white-affair-flyer.jpg",
     featured: true,
     ctaLabel: "NEXT EVENT: THE WHITE PARTY",
     ticketUrl: "https://www.fourvenues.com/adam-bacsa1/events/the-white-affair-by-zaylune-x-toca-rouge-x-siroko-x-esade-events-20-11-2026-FCZY"
@@ -43,6 +49,11 @@ window.SIROKO_EVENTS = [
     tag: "Hip-hop × House",
     category: "nightlife",
     imageClass: "srk004-flyer",
+    venue: "Boris",
+    area: "Sant Gervasi",
+    lat: 41.39305,
+    lng: 2.13926,
+    thumb: "assets/srk-004-boris-flyer.jpg",
     ticketUrl: "https://www.fourvenues.com/siroko-null/events/1211-jauset-x-siroko-12-11-2026-V836"
   },
   {
@@ -57,6 +68,10 @@ window.SIROKO_EVENTS = [
     tag: "Halloween",
     category: "nightlife",
     imageClass: "srk003-flyer",
+    venue: "Mambo Jambo",
+    area: "Gràcia",
+    lat: 41.40925,
+    lng: 2.16095,
     gallery: "srk-003",
     galleryTitle: "Halloween Party",
     gallerySub: "Mambo Jambo",
@@ -76,6 +91,10 @@ window.SIROKO_EVENTS = [
     tag: "D9 x Twenties",
     category: "social",
     imageClass: "srk002-community-card",
+    venue: "D9 Aribau → Twenties",
+    area: "Sant Gervasi · Eixample",
+    lat: 41.39580,
+    lng: 2.14972,
     gallery: "srk-002",
     galleryTitle: "Student Social",
     gallerySub: "D9 Aribau · Twenties",
@@ -95,6 +114,10 @@ window.SIROKO_EVENTS = [
     tag: "Boat Party",
     category: "nightlife",
     imageClass: "srk001-community-card",
+    venue: "Sunset boat → CDLC",
+    area: "Port Olímpic",
+    lat: 41.38613,
+    lng: 2.19983,
     gallery: "srk-001",
     galleryTitle: "Departure",
     gallerySub: "Sunset boat party",

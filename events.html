@@ -79,6 +79,22 @@
 <div class="event-content"><span class="date-chip muted">26 Sep · Past</span><h3>SRK-001: DEPARTURE</h3><p>Sunset Boat Party · Barcelona</p><span class="capacity-chip">Completed · First Siroko drop</span><div class="event-bottom event-bottom-split"><span>Boat Party</span><div class="event-card-actions"><a class="mini-btn" href="srk-001.html">View recap +</a></div></div></div>
 </article>
 </div></section>
+<section aria-label="Siroko journey map" class="section journey-section reveal" id="journey">
+<div class="section-head">
+<div>
+<p class="eyebrow"><span></span> The journey</p>
+<h2 class="chrome-title small">Our Barcelona.</h2>
+</div>
+<p class="section-note">Every Siroko night, pinned on the city. Tap a stop to fly there.</p>
+</div>
+<div class="journey">
+<div class="journey-side">
+<button class="journey-play" id="journeyPlay" type="button"><span aria-hidden="true">▶</span> Play the journey</button>
+<ol class="journey-list" id="journeyList"></ol>
+</div>
+<div class="journey-map-wrap"><div aria-label="Map of Siroko events in Barcelona" class="journey-map" id="journeyMap" role="application"></div></div>
+</div>
+</section>
 <section aria-label="Past events" class="section events-section past-events" id="past-events"><div class="section-head"><div><p class="eyebrow"><span></span> Look back</p><h2 class="chrome-title small">Past events</h2></div></div><div class="event-grid" id="pastEventGrid"></div></section>
 </main>
 <footer class="site-footer">
@@ -105,6 +121,7 @@
 <a class="mobile-ticket-cta" href="srk-005.html">NEXT EVENT: THE WHITE PARTY <span>↗</span></a>
 <script src="events-data.js"></script>
 <script src="script.js"></script>
+<script src="journey.js"></script>
 <script src="consent.js"></script>
 </body>
 </html>
