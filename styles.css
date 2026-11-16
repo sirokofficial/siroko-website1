@@ -3398,3 +3398,7 @@ html body .event-grid .event-card-featured .event-bottom{margin-top:28px!importa
 
 .events-section + .journey-section{padding-top:0;}
 .journey-section + .past-events{padding-top:0;}
+
+/* Event page: Add to calendar + Directions */
+.event-extra-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+.event-extra-actions .mini-btn{display:inline-flex;align-items:center;padding:11px 16px;}

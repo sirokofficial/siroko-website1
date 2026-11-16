@@ -10,6 +10,7 @@
 
    `ctaLabel` sets the text on the floating bottom-right button (default "Next Event: <date>").
    `venue`, `area`, `lat`, `lng` put the event on the home page map and timeline (`thumb` is its small picture).
+   `address` is used by the "Add to calendar" and "Directions" buttons on the event page.
    `featured: true` makes an upcoming event the "next event" even if another one is sooner.
    `hideWhenPast: true` removes a small event from the site once it is over (no recap page).
    Events switch from "upcoming" to "past" on their own once `end` has passed.
@@ -29,6 +30,7 @@ window.SIROKO_EVENTS = [
     category: "nightlife",
     imageClass: "srk005-flyer",
     venue: "Sala Bikini",
+    address: "Sala Bikini, Av. Diagonal 547, Barcelona",
     area: "Les Corts",
     lat: 41.38946,
     lng: 2.13703,
@@ -199,6 +201,36 @@ window.SIROKO_EVENTS = [
     } else {
       cd.style.display = "none";
     }
+  }
+
+  // Event page of an upcoming event: "Add to calendar" and "Directions" buttons under the main buttons
+  const here = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const current = all.find((e) => !e.isPast && e.page && e.page.toLowerCase() === here);
+  const actions = document.querySelector(".event-detail-hero .hero-actions");
+  if (current && actions && !document.querySelector(".event-extra-actions")) {
+    const stamp = (iso) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    const text = (v) => String(v).replace(/([,;\\])/g, "\\$1");
+    const place = current.address || [current.venue, "Barcelona"].filter(Boolean).join(", ");
+    const pageUrl = "https://www.sirokofficial.com/" + current.page;
+    const ics = [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Siroko Barcelona//Events//EN", "BEGIN:VEVENT",
+      "UID:" + current.code.toLowerCase() + "@sirokofficial.com",
+      "DTSTAMP:" + stamp(new Date().toISOString()),
+      "DTSTART:" + stamp(current.start),
+      "DTEND:" + stamp(current.end || current.start),
+      "SUMMARY:" + text(current.title.replace(/^SRK-\d+:\s*/, "") + " · Siroko"),
+      "LOCATION:" + text(place),
+      "DESCRIPTION:" + text("Tickets: " + (current.ticketUrl || pageUrl)),
+      "URL:" + pageUrl,
+      "END:VEVENT", "END:VCALENDAR"
+    ].join("\r\n");
+    const destination = current.address || (typeof current.lat === "number" ? current.lat + "," + current.lng : place);
+    const row = document.createElement("div");
+    row.className = "event-extra-actions";
+    row.innerHTML =
+      `<a class="mini-btn" download="${esc(current.code.toLowerCase())}.ics" href="data:text/calendar;charset=utf-8,${encodeURIComponent(ics)}">Add to calendar +</a>` +
+      `<a class="mini-btn" href="https://www.google.com/maps/dir/?api=1&amp;destination=${encodeURIComponent(destination)}" rel="noreferrer" target="_blank">Directions ↗</a>`;
+    actions.insertAdjacentElement("afterend", row);
   }
 
   // Floating button on every page
