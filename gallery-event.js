@@ -55,6 +55,15 @@ const srk003Photos = Array.from({ length: 24 }, (_, index) => {
   };
 });
 
+const srk005Photos = Array.from({ length: 73 }, (_, index) => {
+  const number = String(index + 1).padStart(2, "0");
+  return {
+    src: `assets/srk-005-recap/srk-005-recap-${number}.jpg`,
+    label: `SRK-005 · ${number}`,
+    download: `srk-005-recap-${number}.jpg`
+  };
+});
+
 const events = {
   "founder-archives": {
     title: "End of Semester Party — Bacheloneta",
@@ -83,6 +92,12 @@ const events = {
     subtitle: "Mambo Jambo",
     description: "A fully private Halloween night at Mambo Jambo: costumes, three DJs and a packed international crowd.",
     photos: srk003Photos
+  },
+  "srk-005": {
+    title: "SRK-005: The White Affair",
+    subtitle: "Sala Bikini · Siroko × Zaylune",
+    description: "Siroko × Zaylune at Sala Bikini: one night, all in white, from midnight to 6 AM.",
+    photos: srk005Photos
   },
   "night-drops": {
     title: "SRK-001: DEPARTURE",

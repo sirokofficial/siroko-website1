@@ -406,3 +406,15 @@ window.addEventListener('load', () => {
   if (reduceMotion) { video.pause(); return; }
   timer = setTimeout(() => show(1), VIDEO_MS);
 })();
+
+// Recap pages: "Sound on" button for the recap video
+document.querySelectorAll('.recap-sound').forEach((button) => {
+  const video = button.parentElement.querySelector('video');
+  if (!video) return;
+  button.addEventListener('click', () => {
+    video.muted = !video.muted;
+    if (!video.muted) { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
+    button.setAttribute('aria-pressed', String(!video.muted));
+    button.textContent = video.muted ? 'Sound on' : 'Sound off';
+  });
+});

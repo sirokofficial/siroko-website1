@@ -3402,3 +3402,10 @@ html body .event-grid .event-card-featured .event-bottom{margin-top:28px!importa
 /* Event page: Add to calendar + Directions */
 .event-extra-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
 .event-extra-actions .mini-btn{display:inline-flex;align-items:center;padding:11px 16px;}
+
+/* SRK-005 recap: video in the hero, and the event card uses a recap photo */
+.srk005-flyer{background-image:url("assets/srk-005-recap/srk-005-recap-05.jpg")!important;background-position:center 35%!important;}
+.recap-video-visual{position:relative;}
+.recap-video-visual .recap-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.recap-sound{position:absolute;right:16px;bottom:16px;z-index:2;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.55);color:#fff;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(8px);}
+.recap-sound[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);}
